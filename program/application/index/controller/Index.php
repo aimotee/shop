@@ -1,52 +1,75 @@
 <?php
 namespace app\index\controller;
+use think\console\command\make\Model;
 use think\Controller;
 use think\Db;
-
-class Index extends controller
+class Index extends Controller
 {
-    public function index()
-    {   $result = Db::query('select * from think_data');
-        dump($result);
-
-    }
-
-    public function db(){
-        $list=Db::table('think_data')
-        ->where('id',6)->select();
-        dump($list);
-
-    }
-    public function db2()
+    public function index2()
     {
-        $list=Db::name('data')
-            ->where('id','>',7)
-            ->select();
-        dump($list);
+        return 2;
     }
 
-    public function db3()
+    public function hello()
     {
-        $d=db('data');
-        $result=$d->insertGetId(['name'=>'vvvv']);
-        dump($result);
-    }
-    public function db4()
-    {
-        for ($i=3;$i<60;$i++)
-        {
-            $data1 = [
-                ['name' =>'t'.$i]
-            ];
-            $result=db('data')->insertAll($data1);
-        }
 
-        dump($data1);
+        /*$content = '{$name}-{$email}';*/
+        return $this->fetch('hello2', [
+            'name'  => 'ThinkPHP',
+            'email' => 'thinkphp@qq.com'
+        ]);
+
     }
+
+    public function hello2()
+    {
+        return $this->fetch('hello', [
+            'name'  => '5+664+6',
+            'email' => 'asidads'
+        ]);
+
+    }
+
+    public function a()
+    {
+        $list=Db::name('data')->where('id','>','0')->paginate(10,30);
+        $this->assign('list',$list);
+        return $this->fetch();
+    }
+
+    public function b()
+    {
+        Db::table('think_data')
+            ->insert(['name'=>'wqeqwr','status'=>'3']);
+    }
+
+    public function c()
+    {
+        Db::execute('update think_data SET NAME ="awhqqw" where id=3');
+    }
+
     public function add()
     {
-        $data=Db::name('data')->select();
-        dump($data);
+        return $this->fetch();
+    }
+
+    public function add1()
+    {
+        /*return $this->fetch();*/
+        $data['name']=$_POST['name'];
+        $data['comment']=$_POST['comment'];
+
+        if($data['comment']!="")
+        {
+            Db::table('think_data')
+                ->insert($data);
+            $this->success('提交成功','add');
+        }
+        else{
+            $this->error('提交失败','add');
+        }
+
+
     }
 
 }
