@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <style type="text/css">
+  <!--  <style type="text/css">
         .pagination li
         {
             display: inline;
@@ -34,36 +34,39 @@
             xmlhttp.open("POST","/public/index/index/a/page/"+str,true);
             xmlhttp.send();
         }
-    </script>
+    </script>-->
     <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
-    <!--<link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
-    &lt;!&ndash; 可选的 Bootstrap 主题文件（一般不用引入） &ndash;&gt;
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
     <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
 
-    &lt;!&ndash; 最新的 Bootstrap 核心 JavaScript 文件 &ndash;&gt;
-    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
+    <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </head>
 <table class="table table-bordered table-hover">
 <tr>
     <th>id</th>
-    <th>name</th>
-    <th>comment</th>
-    <th>status</th>
+    <th>title</th>
+    <th>content</th>
+    <th>create_time</th>
+    <th>update_time</th>
 </tr>
     {volist name="list" id="vo"}
 <tr>
     <td>{$vo.id}</td>
     <td>{$vo.name}</td>
-    <td>{$vo.comment}</td>
-    <td>{$vo.status}</td>
+    <td>{$vo.content}</td>
+    <td>{$vo.create_time}</td>
+    <td>{$vo.update_time}</td>
 </tr>
     {/volist}
 
 </table>
 
+<a href="add.html">发布留言</a>
+<!--<input type="text" onkeyup="loadXMLDoc(this.value)">请求数据</input>-->
+{$list->render()}
 
-<input type="text" onkeyup="loadXMLDoc(this.value)">请求数据</input>
-<!--{$list->render()}-->
 </body>
 </html>

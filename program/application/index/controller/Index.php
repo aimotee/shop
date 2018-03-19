@@ -32,7 +32,7 @@ class Index extends Controller
 
     public function a()
     {
-        $list=Db::name('data')->where('id','>','0')->paginate(10,30);
+        $list=Db::name('data')->where('id','>','0')->paginate(10);
         $this->assign('list',$list);
         return $this->fetch();
     }
@@ -50,7 +50,7 @@ class Index extends Controller
 
     public function add()
     {
-        $request = Request::instance();
+        /*$request = Request::instance();
         echo '请求方法：' . $request->method() . '<br/>';
         echo '资源类型：' . $request->type() . '<br/>';
         echo '访问ip地址：' . $request->ip() . '<br/>';
@@ -59,7 +59,13 @@ class Index extends Controller
         dump($request->post());
         echo Request::instance()->post('name');
         echo "<br/>";
-        echo input('post.comment');
+        echo input('post.content');*/
+        /*$data['name']=input('post.name');
+        echo "POST传name值是：".$data['name'];
+        echo "<br>";
+        $data['content']=input('post.content');
+        echo "POST传content值是：".$data['content'];*/
+
 
         return $this->fetch();
     }
@@ -67,14 +73,14 @@ class Index extends Controller
     public function add1()
     {
         /*return $this->fetch();*/
-        $data['name']=$_POST['name'];
-        $data['comment']=$_POST['comment'];
+        $data['name']=input('post.name');
+        $data['content']=input('post.content');
 
-        if($data['comment']!="")
+        if($data['content']!="")
         {
             Db::table('think_data')
                 ->insert($data);
-            $this->success('提交成功','add');
+            $this->success('提交成功','a');
         }
         else{
             $this->error('提交失败','add');
@@ -83,7 +89,12 @@ class Index extends Controller
 
     }
 
-    public function dele()
+    public function update()
+    {
+
+    }
+
+    public function delete()
     {
 
     }
